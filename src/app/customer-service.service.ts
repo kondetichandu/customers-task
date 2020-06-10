@@ -13,4 +13,11 @@ export class CustomerService {
   getAllCustomers() {
     return this.db.list('/customers').snapshotChanges();
   }
+  get(customerId) {
+    //console.log(customerId);
+    return this.db.object('/customers/' +customerId).valueChanges();
+  }
+  delete(customerId) {
+    return this.db.object('/customers/'+customerId).remove();
+  }
 }

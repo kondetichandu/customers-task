@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { NewcustomerComponent } from './newcustomer/newcustomer.component';
 import { CustomerService } from './customer-service.service';
+import { CustomFormsModule} from 'ng2-validation';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CustomerService } from './customer-service.service';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     FormsModule,
+    CustomFormsModule,
     RouterModule.forRoot([
       {
         path:'newcustomer',

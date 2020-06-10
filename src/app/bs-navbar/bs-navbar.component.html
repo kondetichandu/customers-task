@@ -1,11 +1,19 @@
-<input  
+
+  <input  
   type="text" 
   id="text"
   placeholder="Search..."
->
+  #query
+  (keyup)="Filter(query.value)"
+>  
+<button 
+  (click)="saveForLater(query.value)"
+  class="btn btn-secondary">
+  SaveForLater 
+</button>
 <button
 (click) ="goto()"
-class="btn btn-primary">
+class="btn btn-primary add">
 Add New Customer
 </button>
 <table class="table">
@@ -23,7 +31,8 @@ Add New Customer
       </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let c of customers">
+      <div *ngIf="check===0">
+        <tr *ngFor="let c of allCustomers">
             <td class="">{{c.profileImage}}</td>
             <td class="">{{c.firstName}}</td>
             <td class="">{{c.lastName}}</td>
@@ -37,7 +46,13 @@ Add New Customer
             [routerLink]="['/newcustomer/',c.key]">
             Edit
             </a>
+            <a 
+              href="#"
+              (click) ="delete(c.key)">
+              Delete
+            </a>
             </td>
         </tr>
+        </div>
     </tbody>
   </table>

@@ -3,9 +3,9 @@
     <label for="firstName">FirstName</label>
     <input 
     #firstName="ngModel"
+    [(ngModel)]="person$.firstName"
     ngModel name="firstName"
-    id="firstName" required
-    pattern="[a-zA-Z ]*"
+    id="firstName"
     type="text" 
     class="form-control"
     placeholder="FirstName">
@@ -18,6 +18,7 @@
     <label for="lastName">LastName</label>
     <input 
     #lastName="ngModel"
+    [(ngModel)]="person$.lastName"
     ngModel name="lastName"
     id="lastName" 
     type="text" 
@@ -32,6 +33,7 @@
     <label for="address">Address</label>
     <input 
     #address="ngModel"
+    [(ngModel)]="person$.address"
     ngModel name="address"
     id="address" 
     type="text" 
@@ -46,6 +48,7 @@
     <label for="city">City</label>
     <input 
     #city="ngModel"
+    [(ngModel)]="person$.city"
     ngModel name="city"
     id="city" 
     type="text" 
@@ -60,6 +63,7 @@
     <label for="state">state</label>
     <input 
     #state="ngModel"
+    [(ngModel)]="person$.state"
     ngModel name="state"
     id="state" 
     type="text" 
@@ -74,6 +78,7 @@
     <label for="phoneNumber">Mobile No.</label>
     <input 
     #phoneNumber="ngModel"
+    [(ngModel)]="person$.phoneNumber"
     ngModel name="phoneNumber"
     id="phoneNumber" 
     type="number" 
@@ -87,6 +92,7 @@
     <label for="email">Email</label>
     <input 
     #email="ngModel"
+    [(ngModel)]="person$.email"
     ngModel name="email"
     id="email" required 
     pattern="^[a-zA-Z0-9_.+-]
@@ -111,7 +117,8 @@ type="file">
 class="btn btn-primary">
     Save
 </button>
-<button>
+<button
+(click)="goto()">
     cancel
 </button>
 </form>

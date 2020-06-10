@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../customer-service.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-newcustomer',
@@ -8,8 +9,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./newcustomer.component.css']
 })
 export class NewcustomerComponent implements OnInit {
+  person$:any={};
   constructor(private customerService:CustomerService,
-               private router:Router) { }
+               private route:ActivatedRoute,
+               private router:Router) {
+  let id = this.route.snapshot.paramMap.get('id');
+
+  if(id) {
+    this.customerService.get(id)
+    .pipe(take(1))
+    .subscribe(p=>{
+        this.person$=p;
+        console.log(this.person$);
+     } );
+  }
+                }
   save(details) {
     if(details.firstName=="" || 
        details.lastName==""||
@@ -24,6 +38,9 @@ export class NewcustomerComponent implements OnInit {
     this.customerService.create(details);
     this.router.navigate(['/']);
     }
+  }
+  goto() {
+    this.router.navigate(['/']);
   }
 
   ngOnInit(): void {
