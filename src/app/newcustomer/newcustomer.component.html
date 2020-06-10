@@ -1,0 +1,117 @@
+<form #f="ngForm" (ngSubmit)="save(f.value)">
+<div class="form-group">
+    <label for="firstName">FirstName</label>
+    <input 
+    #firstName="ngModel"
+    ngModel name="firstName"
+    id="firstName" required
+    pattern="[a-zA-Z ]*"
+    type="text" 
+    class="form-control"
+    placeholder="FirstName">
+    <div class="alert alert-danger" 
+    *ngIf="firstName.touched && !firstName.invalid">
+     FirstName is required
+    </div>
+</div>
+<div class="form-group">
+    <label for="lastName">LastName</label>
+    <input 
+    #lastName="ngModel"
+    ngModel name="lastName"
+    id="lastName" 
+    type="text" 
+    class="form-control"
+    placeholder="LastName">
+    <div class="alert alert-danger" 
+    *ngIf="lastName.touched && !lastName.invalid">
+     LastName is required
+    </div>
+</div>
+<div class="form-group">
+    <label for="address">Address</label>
+    <input 
+    #address="ngModel"
+    ngModel name="address"
+    id="address" 
+    type="text" 
+    class="form-control"
+    placeholder="FlatNo/Area/LandMark/">
+    <div class="alert alert-danger" 
+    *ngIf="address.touched && !address.invalid">
+     Address is required
+    </div>
+</div>
+<div class="form-group">
+    <label for="city">City</label>
+    <input 
+    #city="ngModel"
+    ngModel name="city"
+    id="city" 
+    type="text" 
+    class="form-control"
+    placeholder="City">
+    <div class="alert alert-danger" 
+    *ngIf="city.touched && !city.invalid">
+     City is required
+    </div>
+</div>
+<div class="form-group">
+    <label for="state">state</label>
+    <input 
+    #state="ngModel"
+    ngModel name="state"
+    id="state" 
+    type="text" 
+    class="form-control"
+    placeholder="state">
+    <div class="alert alert-danger" 
+    *ngIf="state.touched && !state.invalid">
+     state is required
+    </div>
+</div>
+<div class="form-group">
+    <label for="phoneNumber">Mobile No.</label>
+    <input 
+    #phoneNumber="ngModel"
+    ngModel name="phoneNumber"
+    id="phoneNumber" 
+    type="number" 
+    class="form-control">
+    <div class="alert alert-danger" 
+    *ngIf="phoneNumber.touched && !phoneNumber.invalid">
+     phonenumber is required
+    </div>
+</div>
+<div class="form-group">
+    <label for="email">Email</label>
+    <input 
+    #email="ngModel"
+    ngModel name="email"
+    id="email" required 
+    pattern="^[a-zA-Z0-9_.+-]
+               +@(?:(?:[a-zA-Z0-9-]+\.)
+               ?[a-zA-Z]+\.)?(gmail)\.com$" 
+    type="text" 
+    class="form-control"
+    placeholder="@gmail.com">
+    <div class="alert alert-danger" 
+    *ngIf="email.touched && !email.invalid">
+     email is required
+    </div>
+    <div class="alert alert-danger" 
+    *ngIf="email.errors?.pattern && email.touched">
+     email is invalid
+    </div>
+</div>
+<input 
+ngModel name="profileImage"
+type="file">
+<button 
+class="btn btn-primary">
+    Save
+</button>
+<button>
+    cancel
+</button>
+</form>

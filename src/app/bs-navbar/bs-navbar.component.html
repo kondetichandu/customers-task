@@ -1,0 +1,43 @@
+<input  
+  type="text" 
+  id="text"
+  placeholder="Search..."
+>
+<button
+(click) ="goto()"
+class="btn btn-primary">
+Add New Customer
+</button>
+<table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Mobile No.</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let c of customers">
+            <td class="">{{c.profileImage}}</td>
+            <td class="">{{c.firstName}}</td>
+            <td class="">{{c.lastName}}</td>
+            <td class="">{{c.address}}</td>
+            <td class="">{{c.city}}</td>
+            <td class="">{{c.state}}</td>
+            <td class="">{{c.phoneNumber}}</td>
+            <td class="">{{c.email}}</td>
+            <td>
+            <a 
+            [routerLink]="['/newcustomer/',c.key]">
+            Edit
+            </a>
+            </td>
+        </tr>
+    </tbody>
+  </table>
