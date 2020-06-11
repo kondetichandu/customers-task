@@ -13,6 +13,7 @@ export class BsNavbarComponent implements OnInit {
   customers:Customer[];
   allCustomers:any[];
   check=0;
+  queryValue:string;
   constructor(private router:Router,
               private customerService:CustomerService,
               private route:ActivatedRoute) {
@@ -23,9 +24,20 @@ export class BsNavbarComponent implements OnInit {
       x.forEach((cur,ind) => {
         this.customers[ind].key=cur.key;
       })
+
+    if(localStorage.getItem('saveCustomer')==="true") {
+      this.queryValue=localStorage.getItem('query');
+      this.onSaveForLater(this.queryValue);
+    }
     }
       );
 }
+onSaveForLater(query) {
+  this.allCustomers=(query)?
+  this.customers.filter(c=>c.firstName.toLowerCase()
+  .includes(query.toLowerCase())):
+  this.customers;
+ }
 Filter(query:string) {
   this.allCustomers=(query)?
   this.customers.filter(c=>c.firstName.toLowerCase()
@@ -40,7 +52,19 @@ Filter(query:string) {
   }
  }
  saveForLater(query:string) {
-   this.saveCustomer=this.allCustomers;
+   localStorage.setItem('saveCustomer','true');
+   localStorage.setItem('query',query);
+  }
+  off(){
+    this.customerService.getAllCustomers().subscribe(x=>
+      {
+        this.customers=x.map<any>(y=>y.payload.val());
+        this.allCustomers=this.customers;
+        x.forEach((cur,ind) => {
+          this.customers[ind].key=cur.key;
+        })
+      }
+        );
   }
 
   goto() {

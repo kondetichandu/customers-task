@@ -4,15 +4,18 @@
     <input 
     #firstName="ngModel"
     [(ngModel)]="person$.firstName"
+    (keypress)="checkSpcialChar($event)"
     ngModel name="firstName"
+    required
     id="firstName"
+    value="event"
     type="text" 
     class="form-control"
     placeholder="FirstName">
     <div class="alert alert-danger" 
-    *ngIf="firstName.touched && !firstName.invalid">
+    *ngIf="firstName.touched && firstName.invalid">
      FirstName is required
-    </div>
+    </div> 
 </div>
 <div class="form-group">
     <label for="lastName">LastName</label>
@@ -20,12 +23,14 @@
     #lastName="ngModel"
     [(ngModel)]="person$.lastName"
     ngModel name="lastName"
+    (keypress)="checkSpcialChar($event)"
     id="lastName" 
+    required
     type="text" 
     class="form-control"
     placeholder="LastName">
     <div class="alert alert-danger" 
-    *ngIf="lastName.touched && !lastName.invalid">
+    *ngIf="lastName.touched && lastName.invalid">
      LastName is required
     </div>
 </div>
@@ -35,12 +40,13 @@
     #address="ngModel"
     [(ngModel)]="person$.address"
     ngModel name="address"
+    required
     id="address" 
     type="text" 
     class="form-control"
     placeholder="FlatNo/Area/LandMark/">
     <div class="alert alert-danger" 
-    *ngIf="address.touched && !address.invalid">
+    *ngIf="address.touched && address.invalid">
      Address is required
     </div>
 </div>
@@ -50,14 +56,16 @@
     #city="ngModel"
     [(ngModel)]="person$.city"
     ngModel name="city"
+    required
+    (keypress)="checkSpcialChar($event)"
     id="city" 
     type="text" 
     class="form-control"
     placeholder="City">
-    <div class="alert alert-danger" 
-    *ngIf="city.touched && !city.invalid">
+     <div class="alert alert-danger" 
+    *ngIf="city.touched && city.invalid">
      City is required
-    </div>
+    </div> 
 </div>
 <div class="form-group">
     <label for="state">state</label>
@@ -65,12 +73,14 @@
     #state="ngModel"
     [(ngModel)]="person$.state"
     ngModel name="state"
+    (keypress)="checkSpcialChar($event)"
+    required
     id="state" 
     type="text" 
     class="form-control"
     placeholder="state">
-    <div class="alert alert-danger" 
-    *ngIf="state.touched && !state.invalid">
+     <div class="alert alert-danger" 
+    *ngIf="state.touched && state.invalid">
      state is required
     </div>
 </div>
@@ -79,14 +89,17 @@
     <input 
     #phoneNumber="ngModel"
     [(ngModel)]="person$.phoneNumber"
+    (input)="take(phoneNumber.value)"
+    (keypress)="acceptOnlyIntegers($event)"
     ngModel name="phoneNumber"
+    required
     id="phoneNumber" 
-    type="number" 
+    type="text" 
     class="form-control">
     <div class="alert alert-danger" 
-    *ngIf="phoneNumber.touched && !phoneNumber.invalid">
+    *ngIf="phoneNumber.touched && phoneNumber.invalid">
      phonenumber is required
-    </div>
+    </div> 
 </div>
 <div class="form-group">
     <label for="email">Email</label>
@@ -95,22 +108,16 @@
     [(ngModel)]="person$.email"
     ngModel name="email"
     id="email" required 
-    pattern="^[a-zA-Z0-9_.+-]
-               +@(?:(?:[a-zA-Z0-9-]+\.)
-               ?[a-zA-Z]+\.)?(gmail)\.com$" 
     type="text" 
     class="form-control"
     placeholder="@gmail.com">
     <div class="alert alert-danger" 
-    *ngIf="email.touched && !email.invalid">
+    *ngIf="email.touched && email.invalid">
      email is required
-    </div>
-    <div class="alert alert-danger" 
-    *ngIf="email.errors?.pattern && email.touched">
-     email is invalid
     </div>
 </div>
 <input 
+(change)="onSelectedFile($event)"
 ngModel name="profileImage"
 type="file">
 <button 

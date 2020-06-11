@@ -5,11 +5,17 @@
   placeholder="Search..."
   #query
   (keyup)="Filter(query.value)"
->  
+
+> 
 <button 
   (click)="saveForLater(query.value)"
   class="btn btn-secondary">
-  SaveForLater 
+  ON
+</button>
+<button 
+  (click)="off()"
+  class="btn btn-secondary">
+  OFF
 </button>
 <button
 (click) ="goto()"
@@ -31,7 +37,6 @@ Add New Customer
       </tr>
     </thead>
     <tbody>
-      <div *ngIf="check===0">
         <tr *ngFor="let c of allCustomers">
             <td class="">{{c.profileImage}}</td>
             <td class="">{{c.firstName}}</td>
@@ -53,6 +58,5 @@ Add New Customer
             </a>
             </td>
         </tr>
-        </div>
     </tbody>
   </table>

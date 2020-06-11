@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, OnInit } from '@angular/core';
 import  { AngularFireModule } from 'angularfire2';
 import  { AngularFireDatabaseModule } from 'angularfire2/database';
 import  { AngularFireAuthModule } from 'angularfire2/auth';
@@ -12,6 +12,8 @@ import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { NewcustomerComponent } from './newcustomer/newcustomer.component';
 import { CustomerService } from './customer-service.service';
 import { CustomFormsModule} from 'ng2-validation';
+import {HttpClientModule} from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { CustomFormsModule} from 'ng2-validation';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
@@ -47,4 +50,9 @@ import { CustomFormsModule} from 'ng2-validation';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule implements OnInit{ 
+  ngOnInit() {
+    localStorage.setItem('saveCustomer','false');
+    localStorage.setItem('query','');
+  }
+}
